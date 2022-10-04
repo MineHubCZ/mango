@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Middlewares;
 
 use Lemon\Http\Request;
@@ -15,7 +17,7 @@ class Auth
         if (!in_array($request->get('token'), $tokens)) {
             return response([
                 'code' => '401',
-                'error' => 'Invalid token', 
+                'error' => 'Invalid token',
             ])->code(401);
         }
 

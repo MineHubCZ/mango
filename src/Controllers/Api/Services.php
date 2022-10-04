@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers\Api;
 
 use App\Services as ServicesRepository;
@@ -10,7 +12,6 @@ class Services
 {
     public function index(): array
     {
-
     }
 
     public function edit(string $service, ServicesRepository $services, Request $request): array|Response
@@ -25,7 +26,5 @@ class Services
                 'error' => 'Bad request data',
             ])->code(400);
         }
-
-
     }
 }

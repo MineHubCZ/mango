@@ -1,3 +1,3 @@
 <?php
 
-use \Lemon\Route;
+declare(strict_types=1);
