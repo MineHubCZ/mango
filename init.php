@@ -2,6 +2,7 @@
 
 include __DIR__.'/vendor/autoload.php';
 
+use App\Services;
 use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
 use Lemon\Protection\Middlwares\Csrf;
@@ -30,5 +31,7 @@ $router->file('routes.api')
     ->prefix('api')
     ->middleware(Cors::class)
 ;
+
+$application->add(Services::class);
 
 return $application;
