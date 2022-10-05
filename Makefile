@@ -4,3 +4,4 @@ install:
 	composer install
 	yarn
 	yarn run mix
+	php lemonade services:build

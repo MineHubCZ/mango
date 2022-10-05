@@ -1,7 +1,7 @@
 vendor
 node_modules
 .env
-.tokens
+tokens
 public/**/*.js
 public/**/*.css
 **/*.sqlite

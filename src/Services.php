@@ -13,15 +13,13 @@ class Services
 
     public function __construct(Config $config)
     {
-        $this->file = $config->file('services.file', 'json');
-        $content = file_get_contents($this->file);
-        $this->data = json_decode($content);
+        $this->file = $config->file('services.file', 'php');
+        $this->data = require $this->file;
     }
 
     public function __destruct()
     {
-        // We use pretty print to keep adding new services simpler
-        file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
+        file_put_contents($this->file, ArrayExporter::export($this->data));
     }
 
     public function all(): array
@@ -34,10 +32,5 @@ class Services
         $this->data[$name] = $status;
 
         return $this;
-    }
-
-    public function status(string $name): int
-    {
-        return $this->data[$name];
     }
 }

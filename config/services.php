@@ -3,5 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'file' => 'storage.data',
+    // Contains all the services in a php file
+    'file' => 'data',
 ];

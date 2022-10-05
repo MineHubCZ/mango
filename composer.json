@@ -1,6 +1,7 @@
 {
     "require": {
-        "lemon_framework/lemon": "^3.5"
+        "lemon_framework/lemon": "^3.5",
+        "pestphp/pest-plugin-mock": "^1.0"
     },
     "autoload": {
         "psr-4": {
