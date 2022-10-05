@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Contracts\Services as ContractsServices;
 use Lemon\Contracts\Config\Config;
 
-class Services
+class Services implements ContractsServices
 {
     public readonly string $file;
     private array $data;
@@ -32,5 +33,10 @@ class Services
         $this->data[$name] = $status;
 
         return $this;
+    }
+
+    public function has(string $name): bool
+    {
+        return isset($this->data[$name]);
     }
 }

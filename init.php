@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 include __DIR__.'/vendor/autoload.php';
 
+use App\Contracts\Services as ContractsServices;
 use App\Services;
 use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
@@ -35,5 +36,6 @@ $router->file('routes.api')
 ;
 
 $application->add(Services::class);
+$application->alias(ContractsServices::class, Services::class);
 
 return $application;

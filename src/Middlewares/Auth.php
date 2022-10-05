@@ -7,7 +7,6 @@ namespace App\Middlewares;
 use Lemon\Contracts\Config\Config;
 use Lemon\Http\Request;
 use Lemon\Http\Response;
-use Lemon\Kernel\Application;
 
 class Auth
 {

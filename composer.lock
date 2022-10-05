@@ -200,16 +200,16 @@
         },
         {
             "name": "lemon_framework/lemon",
-            "version": "3.6.2",
+            "version": "3.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lemon-Framework/Lemon.git",
-                "reference": "465cf3716830db7eb09919a87a5be5fc04b8585f"
+                "reference": "daf8d5943eb33a01e1c2e1a740145d52fb04ceb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/465cf3716830db7eb09919a87a5be5fc04b8585f",
-                "reference": "465cf3716830db7eb09919a87a5be5fc04b8585f",
+                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/daf8d5943eb33a01e1c2e1a740145d52fb04ceb9",
+                "reference": "daf8d5943eb33a01e1c2e1a740145d52fb04ceb9",
                 "shasum": ""
             },
             "require": {
@@ -246,9 +246,9 @@
             "description": "A php microframework",
             "support": {
                 "issues": "https://github.com/Lemon-Framework/Lemon/issues",
-                "source": "https://github.com/Lemon-Framework/Lemon/tree/3.6.2"
+                "source": "https://github.com/Lemon-Framework/Lemon/tree/3.6.5"
             },
-            "time": "2022-10-05T14:46:38+00:00"
+            "time": "2022-10-05T19:42:08+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -4410,5 +4410,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

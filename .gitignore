@@ -2,6 +2,7 @@ vendor
 node_modules
 .env
 tokens
+data.php
 public/**/*.js
 public/**/*.css
 **/*.sqlite

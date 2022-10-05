@@ -9,5 +9,5 @@ use Lemon\Route;
 Route::get('services', [Services::class, 'index']);
 
 Route::post('services/{service}/edit', [Services::class, 'edit'])
-    ->middleware([Auth::class, 'isAuthenticated'])
+    ->middleware([Auth::class, 'onlyAuthenticated'])
 ;
