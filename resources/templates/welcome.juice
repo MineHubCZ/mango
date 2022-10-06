@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Status</title>
+    <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
-    Welcome to Lemon Framework version {{ \Lemon\Kernel\Application::VERSION }}!
+<body class="bg-gray-800 text-white p-5">
+    <h1 class="text-5xl">Status</h1>
+    { foreach $services as $service => $status }
+        <div class="shadow-lg">{{ $service |> capitalize }} <div class='{{ $status |> toStatusClass}}'></div></div>
+    { /foreach }
 </body>
 </html>

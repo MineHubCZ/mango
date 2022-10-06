@@ -1,1 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.status-group {
+    border-radius: 1.2rem;
+    .btn {
+        cursor: none;
+    }
+}
+
+.online, .offline, .maintenance {
+    width: 3rem;
+    height: 3rem;
+    display: inline-block;
+    border-radius: 100%;
+}
+.online {
+    background: #2ecc71;
+    border: 0.75rem solid #97e6b8;
+}
+.maintenance {
+    background: #f1c40f;
+    border: 0.75rem solid #f8e287;
+}
+.offline {
+    background: #e74c3c;
+    border: 0.75rem solid #f3a69e;
+}
