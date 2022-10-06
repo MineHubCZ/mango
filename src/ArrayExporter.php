@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 class ArrayExporter
 {
     /**
-     * Exports array of services into string
+     * Exports array of services into string.
      */
     public static function export(array $array): string
     {
@@ -13,6 +15,7 @@ class ArrayExporter
         foreach ($array as $key => $value) {
             $result .= '    \''.$key.'\' => '.$value.",\n";
         }
+
         return $result.'];';
     }
 }

@@ -40,8 +40,8 @@ $application->add(Services::class);
 $application->alias(ContractsServices::class, Services::class);
 
 $application->get('templating.env')->macro('capitalize', 'ucfirst');
-$application->get('templating.env')->macro('toStatusClass', function(int $status) {
-    return match($status) {
+$application->get('templating.env')->macro('toStatusClass', function (int $status) {
+    return match ($status) {
         0 => 'offline',
         1 => 'online',
         2 => 'maintenance',

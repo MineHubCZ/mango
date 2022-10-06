@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use App\ArrayExporter;
 
-it('exports array', function() {
+it('exports array', function () {
     expect(ArrayExporter::export(['foo' => 1, 'bar' => 2]))
         ->toBe(<<<'HTML'
         <?php
@@ -11,5 +13,6 @@ it('exports array', function() {
             'foo' => 1,
             'bar' => 2,
         ];
-        HTML);
+        HTML)
+    ;
 });

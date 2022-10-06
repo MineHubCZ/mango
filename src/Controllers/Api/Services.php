@@ -36,6 +36,7 @@ class Services
         }
 
         $services->set($service, (int) $request->get('status'));
+
         return ['code' => 200];
     }
 }
