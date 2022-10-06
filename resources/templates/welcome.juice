@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Status</title>
+    <title>Status | MineHub</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body class="bg-gray-800 text-white p-5">
-    <h1 class="text-5xl">Status</h1>
-    { foreach $services as $service => $status }
-        <div class="shadow-lg">{{ $service |> capitalize }} <div class='{{ $status |> toStatusClass}}'></div></div>
-    { /foreach }
+<body class="p-5 text-white bg-gray-800">
+    <h1 class="text-5xl">MineHub Status</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-10">
+        { foreach $services as $service => $status }
+            <div class="flex items-center justify-between p-5 shadow-xl">
+                <div class="text-xl">{{ $service |> capitalize }}</div>
+                <div class='{{ $status |> toStatusClass}}'></div>
+            </div>
+        { /foreach }
+    </div>
 </body>
 </html>
