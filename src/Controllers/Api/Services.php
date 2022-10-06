@@ -21,7 +21,7 @@ class Services
             'status' => 'numeric|min:-1|max:3',
         ]);
 
-        if ($e) {
+        if (!$e) {
             return response([
                 'code' => 400,
                 'error' => 'Bad request data',

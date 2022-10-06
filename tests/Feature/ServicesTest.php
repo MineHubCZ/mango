@@ -33,9 +33,31 @@ it('won\'t let unauthorized user edit', function() {
     ;   
 });
 
+it('won\'t let unauthorized user with bad token edit', function() {
+
+    $this->mock(Config::class)
+        ->expect(file: fn() => __DIR__.DIRECTORY_SEPARATOR.'tokens.mock')
+    ;
+
+    $this->mock(Services::class)
+         ->expect(
+             set: fn() => $this,
+             has: fn() => false,
+         )
+    ;
+
+    $this->request('api/services/web/edit', method: 'POST', body: '{"token":"nevimneco","status":2}', headers: ['Content-Type' => 'application/json'])
+         ->assertBody(['code' => 401, 'error' => "Invalid token"])
+         ->assertStatus(401)
+    ;   
+});
+
 it('edits service', function() {
     $this->mock(Config::class)
-         ->expect(file: fn() => __DIR__.DIRECTORY_SEPARATOR.'tokens.mock')
+         ->expect(
+             file: fn() => __DIR__.DIRECTORY_SEPARATOR.'tokens.mock', 
+             get : fn() => null
+         )
     ;
     
     $services = $this->mock(Services::class)
@@ -54,11 +76,27 @@ it('edits service', function() {
 
     $this->request('api/services/web/edit', method: 'POST', body: '{"token":"rizkoparek","status":2}', headers: ['Content-Type' => 'application/json'])
          ->assertOK()
-     ;
+    ;
 
     expect($services->all()['web'])
-//        ->toBe(2)
+        ->toBe(2)
     ;
 });
 
+it('won\'t edit not-existing service', function() {
+    $this->mock(Config::class)
+         ->expect(
+             file: fn() => __DIR__.DIRECTORY_SEPARATOR.'tokens.mock', 
+             get : fn() => null
+         )
+    ;
 
+    $this->mock(Services::class)
+         ->expect(
+             has: fn() => false,
+         )
+    ;
+    $this->request('api/services/web/edit', method: 'POST', body: '{"token":"rizkoparek","status":2}', headers: ['Content-Type' => 'application/json'])
+         ->assertStatus(404)
+    ;      
+});
