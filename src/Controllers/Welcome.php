@@ -11,6 +11,6 @@ class Welcome
 {
     public function handle(Services $services): Template
     {
-        return template('welcome', services: ['web' => 1, 'parek' => 2, 'rizek' => 0, 'rohlik' => 1]);
+        return template('welcome', services: $services->all());
     }
 }
