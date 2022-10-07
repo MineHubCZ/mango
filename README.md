@@ -18,7 +18,7 @@ This endpoint allows you to get all services with no authentication.
 
 #### Endpoint
 
-`GET /services/all`
+`GET /api/services/all`
 
 #### Respose
 
@@ -47,7 +47,7 @@ You can edit service via this endpoint, you must be authorized using token.
 
 #### Endpoint
 
-`POST /services/{service}/edit`
+`POST /api/services/{service}/edit`
 
 #### Request
 
