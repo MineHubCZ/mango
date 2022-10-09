@@ -30,6 +30,10 @@ class Services implements ContractsServices
 
     public function set(string $name, int $status): static
     {
+        if ($status == $this->data[$status]) {
+            return $this;
+        }
+
         $this->data[$name] = $status;
 
         return $this;

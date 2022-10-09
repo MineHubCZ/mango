@@ -39,4 +39,34 @@ class Services
 
         return ['code' => 200];
     }
+
+    public function editMultiple(ServicesRepository $services, Request $request)
+    {
+        if (!$request->is('application/json')) {
+            return response([
+                'code' => 400,
+                'error' => 'Expected json',
+            ])->code(400);
+        }
+
+        foreach ($request->get('services') as $service => $status) {
+            if (!is_string($service)) {
+                return response([
+                    'code' => 400,
+                    'error' => 'Service name '.$service.' is not valid',
+                ])->code(400);
+            }
+
+            if (!in_array($status, [0, 1, 2])) {
+                return response([
+                    'code' => 400,
+                    'error' => 'Status '.$status.' is not valid',
+                ])->code(400);
+            }
+
+            $services->set($service, $status);
+        }
+
+        return ['code' => 200];
+    }
 }

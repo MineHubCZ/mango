@@ -6,6 +6,7 @@ include __DIR__.'/vendor/autoload.php';
 
 use App\Contracts\Services as ContractsServices;
 use App\Services;
+use App\WebhookManager;
 use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
 use Lemon\Protection\Middlwares\Csrf;
@@ -47,5 +48,7 @@ $application->get('templating.env')->macro('toStatusClass', function (int $statu
         default => throw new Exception('Status '.$status.' doesnt have class')
     };
 });
+
+$application->add(WebhookManager::class);
 
 return $application;

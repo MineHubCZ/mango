@@ -1,7 +1,7 @@
 {
     "require": {
         "lemon_framework/lemon": "^3.5",
-        "pestphp/pest-plugin-mock": "^1.0"
+        "guzzlehttp/guzzle": "^7.5"
     },
     "autoload": {
         "psr-4": {
@@ -16,7 +16,8 @@
     "require-dev": {
         "pestphp/pest": "^1.21",
         "phpstan/phpstan": "^1.8",
-        "friendsofphp/php-cs-fixer": "^3.11"
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "mockery/mockery": "^1.5"
     },
     "config": {
         "allow-plugins": {
