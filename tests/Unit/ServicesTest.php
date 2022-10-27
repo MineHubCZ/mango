@@ -13,6 +13,8 @@ function get_services(): Services
          ->andReturnSelf()
     ;
 
+    $mock->shouldReceive('terminate');
+
     return new Services(
         mock(Config::class)
             ->expect(

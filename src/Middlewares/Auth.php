@@ -13,7 +13,7 @@ class Auth
     public function onlyAuthenticated(Config $config, Request $request): ?Response
     {
         $tokens = array_slice(
-            explode("\n", file_get_contents($config->file('tokens.file'))),
+            explode("\n", file_get_contents($config->file('tokens.tokens'))),
             0,
             -1
         );

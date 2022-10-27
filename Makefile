@@ -1,6 +1,6 @@
 install:
 	cp .env.example .env
-	cp .tokens.example .tokens
+	touch tokens
 	composer install
 	yarn
 	yarn run mix

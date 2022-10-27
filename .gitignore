@@ -1,7 +1,7 @@
 vendor
 node_modules
 .env
-tokens
+.tokens
 data.php
 public/**/*.js
 public/**/*.css
