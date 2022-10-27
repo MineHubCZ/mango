@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Services;
 use App\Contracts\WebhookManager;
+use App\Services;
 use Lemon\Contracts\Config\Config;
 
 function get_services(): Services
 {
     $mock = mock(WebhookManager::class);
     $mock->shouldReceive('send')
-         ->andReturnSelf()
+        ->andReturnSelf()
     ;
 
     $mock->shouldReceive('terminate');
@@ -63,7 +63,7 @@ it('changes service', function () {
     ;
 });
 
-it('wont save services', function() {
+it('wont save services', function () {
     $services = get_services();
     $services->set('web', 0);
     $services->dontSave();

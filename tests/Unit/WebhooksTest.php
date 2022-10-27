@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 use App\WebhookManager;
 use Lemon\Contracts\Config\Config;
 
-it('generates discord json', function() {
+it('generates discord json', function () {
     $this->mock(Config::class);
+
     /** @var WebhookManager $manager */
     $manager = $this->application->get(WebhookManager::class);
     $manager->send('web', 1)
-            ->send('identita', 0)
-            ->send('skyblock', 2)
-        ;
+        ->send('identita', 0)
+        ->send('skyblock', 2)
+    ;
     expect($manager->buildDiscordJson())
         ->json()
         ->toBe([
@@ -45,18 +48,20 @@ it('generates discord json', function() {
                         ],
                     ],
                 ],
-            ]
-        ]);
+            ],
+        ])
+    ;
 });
 
-it('generates slack json', function() {
+it('generates slack json', function () {
     $this->mock(Config::class);
+
     /** @var WebhookManager $manager */
     $manager = $this->application->get(WebhookManager::class);
     $manager->send('web', 1)
-            ->send('identita', 0)
-            ->send('skyblock', 2)
-        ;
+        ->send('identita', 0)
+        ->send('skyblock', 2)
+    ;
     expect($manager->buildSlackJson())
         ->json()
         ->toBe([
@@ -91,6 +96,7 @@ it('generates slack json', function() {
                         ],
                     ],
                 ],
-            ]
-        ]);
+            ],
+        ])
+    ;
 });

@@ -7,7 +7,6 @@ namespace App;
 use App\Contracts\Services as ContractsServices;
 use App\Contracts\WebhookManager;
 use Lemon\Contracts\Config\Config;
-use Lemon\Terminal;
 
 class Services implements ContractsServices
 {
@@ -54,6 +53,7 @@ class Services implements ContractsServices
     public function dontSave(): static
     {
         $this->dont_save = true;
+
         return $this;
     }
 

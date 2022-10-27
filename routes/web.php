@@ -7,7 +7,7 @@ use Lemon\Route;
 
 Route::get('/', [Welcome::class, 'handle']);
 
-Route::get('cs', function() {
+Route::get('cs', function () {
     return <<<'HTML'
     <!DOCTYPE html>
     <html lang="en">

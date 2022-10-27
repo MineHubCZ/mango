@@ -11,7 +11,6 @@ use App\WebhookManager;
 use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
 use Lemon\Protection\Middlwares\Csrf;
-use Lemon\ResponseFactory;
 
 $application = new Application(__DIR__);
 

@@ -82,7 +82,7 @@ it('edits service', function () {
     ;
 });
 
-it('edits multiple services', function() {
+it('edits multiple services', function () {
     $this->mock(Config::class)
         ->expect(
             file: fn () => __DIR__.DIRECTORY_SEPARATOR.'tokens.mock',
@@ -106,8 +106,8 @@ it('edits multiple services', function() {
 
     $this->request('api/services/edit', method: 'POST', body: '{"token":"rizkoparek","services":{"web":0,"identita":2,"skyblock":1}}', headers: ['Content-Type' => 'application/json'])
         ->assertOK()
-    ;   
-    
+    ;
+
     expect($services->all())
         ->toBe(['web' => 0, 'identita' => 2, 'skyblock' => 1])
     ;
@@ -123,9 +123,9 @@ it('won\'t edit not-existing service while editing multiple', function () {
 
     $services = $this->mock(Services::class)
         ->expect(
-            set: fn() => $this,
+            set: fn () => $this,
             has: fn ($name) => isset($this->data[$name]),
-            dontSave: fn() => $this,
+            dontSave: fn () => $this,
             all: fn () => $this->data
         )
     ;
@@ -134,9 +134,8 @@ it('won\'t edit not-existing service while editing multiple', function () {
 
     $this->request('api/services/edit', method: 'POST', body: '{"token":"rizkoparek","services":{"web":0,"identita":2,"parek":1}}', headers: ['Content-Type' => 'application/json'])
         ->assertStatus(400)
-    ;   
+    ;
 });
-
 
 it('won\'t edit service with bad status while editing multiple', function () {
     $this->mock(Config::class)
@@ -148,9 +147,9 @@ it('won\'t edit service with bad status while editing multiple', function () {
 
     $services = $this->mock(Services::class)
         ->expect(
-            set: fn() => $this,
+            set: fn () => $this,
             has: fn ($name) => isset($this->data[$name]),
-            dontSave: fn() => $this,
+            dontSave: fn () => $this,
             all: fn () => $this->data
         )
     ;
@@ -159,7 +158,7 @@ it('won\'t edit service with bad status while editing multiple', function () {
 
     $this->request('api/services/edit', method: 'POST', body: '{"token":"rizkoparek","services":{"web":0,"identita":5,"parek":1}}', headers: ['Content-Type' => 'application/json'])
         ->assertStatus(400)
-    ;   
+    ;
 });
 
 it('won\'t edit not-existing service', function () {
