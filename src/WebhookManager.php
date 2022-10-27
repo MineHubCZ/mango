@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Contracts\WebhookManager as ContractsWebhookManager;
 use GuzzleHttp\Client;
 use Lemon\Contracts\Config\Config;
 
-class WebhookManager
+class WebhookManager implements ContractsWebhookManager
 {
     private array $embeds = [];
 
@@ -33,7 +34,7 @@ class WebhookManager
         return $this;
     }
 
-    public function buildJson(): string
+    public function buildSlackJson(): string
     {
         return json_encode([
             'attachments' => array_map(fn($embed) => [
@@ -49,19 +50,45 @@ class WebhookManager
         ]);
     }
 
-    public function terminate()
+    public function buildDiscordJson(): string
+    {
+        return json_encode([
+            'embeds' => array_map(fn($embed) => [
+                'title' => ucfirst($embed[0]),
+                'color' => static::Colors[$embed[1]],
+                'fields' => [
+                    [
+                        'name' => 'Stav',
+                        'value' => self::Statuses[$embed[1]],
+                    ]
+                ]
+            ], $this->embeds)
+        ]);
+    }
+
+    public function terminate(): void
     {
         $client = new Client();
 
-        if (($url = $this->config->get('webhooks.discord')) != null) {
-            $client->post($url.'/slack', [
-                'body' => $this->buildJson()
+        if (!$this->embeds) {
+            return;
+        }
+
+        if (($url = $this->config->get('webhooks.discord')) != '') {
+            $client->post($url, [
+                'body' => $this->buildDiscordJson(),
+                'headers' => [
+                    'Content-Type' => 'application/json'
+                ]
             ]);
         }
 
-        if (($url = $this->config->get('webhooks.slack')) != null) {
+        if (($url = $this->config->get('webhooks.slack')) != '') {
             $client->post($url, [
-                'body' => $this->buildJson()
+                'body' => $this->buildSlackJson(),
+                'headers' => [
+                    'Content-Type' => 'application/json'
+                ]
             ]);
         }
 

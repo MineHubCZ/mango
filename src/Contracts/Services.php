@@ -11,4 +11,6 @@ interface Services
     public function set(string $name, int $status): static;
 
     public function has(string $name): bool;
+
+    public function dontSave(): static;
 }

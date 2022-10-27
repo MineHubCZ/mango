@@ -12,7 +12,6 @@ it('generates json', function() {
             ->send('skyblock', 2)
         ;
     expect($manager->buildJson())
-        ->json()
         ->toBe([
             'attachments' => [
                 [

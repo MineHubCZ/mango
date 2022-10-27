@@ -5,6 +5,7 @@ declare(strict_types=1);
 include __DIR__.'/vendor/autoload.php';
 
 use App\Contracts\Services as ContractsServices;
+use App\Contracts\WebhookManager as ContractsWebhookManager;
 use App\Services;
 use App\WebhookManager;
 use Lemon\Http\Middlewares\Cors;
@@ -50,5 +51,6 @@ $application->get('templating.env')->macro('toStatusClass', function (int $statu
 });
 
 $application->add(WebhookManager::class);
+$application->alias(ContractsWebhookManager::class, WebhookManager::class);
 
 return $application;

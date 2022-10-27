@@ -50,20 +50,22 @@ class Services
         }
 
         foreach ($request->get('services') as $service => $status) {
-            if (!is_string($service)) {
+            if (!$services->has($service)) {
+                $services->dontSave();
                 return response([
                     'code' => 400,
-                    'error' => 'Service name '.$service.' is not valid',
+                    'error' => 'Service '.$service.' does not exist',
                 ])->code(400);
             }
 
             if (!in_array($status, [0, 1, 2])) {
+                $services->dontSave();
                 return response([
                     'code' => 400,
                     'error' => 'Status '.$status.' is not valid',
                 ])->code(400);
             }
-
+            
             $services->set($service, $status);
         }
 

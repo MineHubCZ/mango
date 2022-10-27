@@ -3,15 +3,22 @@
 declare(strict_types=1);
 
 use App\Services;
+use App\Contracts\WebhookManager;
 use Lemon\Contracts\Config\Config;
 
 function get_services(): Services
 {
+    $mock = mock(WebhookManager::class);
+    $mock->shouldReceive('send')
+         ->andReturnSelf()
+    ;
+
     return new Services(
         mock(Config::class)
             ->expect(
                 file: fn () => __DIR__.DIRECTORY_SEPARATOR.'services.php'
-            )
+            ),
+        $mock->expect()
     );
 }
 
@@ -51,5 +58,22 @@ it('changes service', function () {
             'web' => 0,
             'skyblock' => 2,
         ])
+    ;
+});
+
+it('wont save services', function() {
+    $services = get_services();
+    $services->set('web', 0);
+    $services->dontSave();
+    expect(file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'services.php'))
+        ->toBe(<<<'HTML'
+            <?php
+            
+            return [
+                'survival' => 1,
+                'web' => 0,
+                'skyblock' => 2,
+            ];
+        HTML)
     ;
 });
